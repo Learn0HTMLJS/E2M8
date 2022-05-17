@@ -1,0 +1,42 @@
+main{
+    color: #999999;
+}
+
+p{
+    color: black;
+}
+
+h5{
+    color: black;
+}
+
+.MainDesign{
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 90%;
+    color: white;
+}
+
+.FlexMain{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+#FCLeft{
+    width: 60%;
+}
+
+#FCRight{
+    width: 40%;
+}
+
+#CURRENTIMAGE{
+    width: 100%;
+}
+
+/* .FlexCard{
+
+} */
