@@ -14,7 +14,7 @@
 
     <title>Document</title>
 </head>
-
+<script> let model_id; </script>
 <body>
     <header>
         <nav class="navbar bg-info justify-content-center">
@@ -24,7 +24,7 @@
                 <input class="form-control me-2 bg-Primary" type="search" placeholder="Search" aria-label="Search">
             </form>
 
-            <a href="#" class="nav-link text-white"> Добавить модельку </a>
+            <a href="#" class="nav-link text-white" id="APPLY"> Добавить модельку </a>
         </nav>
     </header>
 
@@ -37,7 +37,7 @@
                 <button class="btn btn-primary" id="form1"> Загрузить картинку </button>
             </div>
             <div id="FCRight" class="FlexCard">
-                <button class="btn btn-primary"> Загрузить модель </button>
+                <button class="btn btn-primary" id="SelectModel"> Загрузить модель </button>
                 <p>Просмотры</p>
                 <div>
                     <h5>Теги</h5>
@@ -54,29 +54,64 @@
 
         <!-- Диалоги -->
         <div id="Background">
-                    <div class="container" id="PictureDialog">
-                        <div id="FormPictureDiv"> <button id="CloseButton"> X </button> </div>
-                        <div>
-                            <form id="FormPicture" name="form" method="POST">
-                                <!-- Картинка -->
-                                <input type="file" class="form-file-input" id="Image">
-                                <label class="form-file-label" for="customFile">
-                                  <!-- <span class="form-file-text">Choose file...</span>
+            <div class="container" id="PictureDialog">
+                <div id="FormPictureDiv"> <button id="CloseButton"> X </button> </div>
+                <div>
+                    <form id="FormPicture" name="form" method="POST">
+                        <!-- Картинка -->
+                        <input type="file" class="form-file-input" id="Image">
+                        <label class="form-file-label" for="customFile">
+                            <!-- <span class="form-file-text">Choose file...</span>
                                   <span class="form-file-button">Browse</span> -->
-                                </label>
-                                <!-- Примечание -->
-                                <div class="mb-3">
-                                    <label class="form-label">Примечание</label>
-                                    <textarea class="form-control" id="ImageInfo" rows="3"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary" id="SendPict">Отправить</button>
-                            </form>
+                        </label>
+                        <!-- Примечание -->
+                        <div class="mb-3">
+                            <label class="form-label">Примечание</label>
+                            <textarea class="form-control" id="ImageInfo" rows="3"></textarea>
                         </div>
-                    </div>
+                        <button type="submit" class="btn btn-primary" id="SendPict">Отправить</button>
+                    </form>
                 </div>
-            
+            </div>
+        </div>
+
+        <!-- Диалоги моделька -->
+        <div id="Background1">
+            <div class="container" id="Dialog1">
+                <div id="FormDiv1"> <button id="CloseButton1"> X </button> </div>
+                <div>
+                    <form id="FormPicture1" name="form1" method="POST">
+                        <!-- Название модели -->
+                        <div class="mb-3">
+                            <label for="ModelName1" class="form-label">Название</label>
+                            <input type="text" class="form-control" id="ModelName1" placeholder="Моделька" required>
+                        </div>
+                        <!-- Моделька -->
+                        <input type="file" class="form-file-input" id="Model1" required>
+                        <label class="form-file-label" for="customFile">
+                            <!-- <span class="form-file-text">Choose file...</span>
+                                          <span class="form-file-button">Browse</span> -->
+                        </label>
+                        <!-- Ввод имени -->
+                        <div class="mb-3">
+                            <label for="InputUserName1" class="form-label">Имя автора</label>
+                            <input type="text" class="form-control" id="InputUserName1" placeholder="Иван"
+                                aria-label="First name" required>
+                        </div>
+                        <!-- Примечание -->
+                        <div class="mb-3">
+                            <label class="form-label">Примечание</label>
+                            <textarea class="form-control" id="Info1" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="SendModel">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
     </main>
 </body>
-    <script src="run.js"></script>
+<script src="JS/LoadPicture.js"></script>
+<script src="JS/LoadModel.js"></script>
+<script src="JS/Save.js"></script>
 </html>

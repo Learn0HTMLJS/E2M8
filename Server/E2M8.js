@@ -1,33 +1,22 @@
 const express = require('express');
 const cors = require('cors');
-const multer = require('multer');
 const app = express();
+
 app.use(cors());
+app.use(express.json())
+app.use('/img', express.static(`Server/static`));
 
-const storage = multer.diskStorage({
-  destination: function(req, res, cb){
-    cb(null, 'Server/static')
-  },
-  filename: function(req, file, cb){
-    cb(null, file.originalname + Date.now())
-  }
-})
+const models = require('./routers/modelsroute')
+app.use('/api/models', models);
 
-const fileFilter = (req, file, cb) => {
-  if(file.mimetype === "image/png" || 
-  file.mimetype === "image/jpg"|| 
-  file.mimetype === "image/jpeg"){
-      cb(null, true);
-  }
-  else{
-      cb(null, false);
-  }
-}
+const pictures = require('./routers/picturesroute')
+app.use('/api/pictures', pictures);
 
-app.use('/styles', express.static(`static`));
-const upload = multer({storage: storage, fileFilter: fileFilter}).single('Picture');
+const tags = require('./routers/tagsroute')
+app.use('/api/tags', tags);
 
-app.post('/', upload, function (request, response) {
+
+/*app.post('/', upload, function (request, response) {
   let filedata = request.file;
   if(!filedata)
   {
@@ -47,7 +36,7 @@ app.post('/', upload, function (request, response) {
     response.send(JSON.stringify(r));
   }
   console.log(`подключен`);
-});
+});*/
 
 app.get('/', function (request, response) {
   response.send('<h2>Привет Express!</h2>');
@@ -57,3 +46,4 @@ app.get('/', function (request, response) {
 app.listen(3000, '127.0.0.1', () => {
   console.log('порт 3000');
 });
+
