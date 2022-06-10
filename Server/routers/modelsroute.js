@@ -24,10 +24,14 @@ router.route('/')
         return;
       }
     });
-    Patch = req.file.path;
-    r = model.insertModel(Name, Info, userName, Patch).then(result =>{
-      
-      //result 
+
+    Patch = req.file.filename;
+/*    console.log(Patch);
+    let sz = req.file.path.length;
+    console.log(req.file.path);
+    Patch = Patch.slice(sz-1);
+    console.log(Patch);*/
+    r = model.insertModel(Name, Info, userName, Patch).then(result =>{   
       res.send(JSON.stringify(result));
     });    
   })
@@ -40,9 +44,17 @@ router.route('/')
 
 router.route('/:id')
   .get((req, res) => {
-    let num = req.url.slice(2, this.length);
+    let num = req.url.slice(2, this.length);   
     let r = select.selectModel(num).then(resul =>{
       console.log(resul);
+      if(!resul)
+      {
+        res.status = 400;
+        rt = {
+          "status": "Ошибка чтения"
+        }
+        res.send(JSON.stringify(rt));
+      }
       res.send(resul[0]);
     });
   })

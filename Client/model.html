@@ -14,7 +14,9 @@
 
     <title>Document</title>
 </head>
-
+<script src="JS/three.js"></script>
+<script src="JS/STLloader.js"></script> 
+<!-- <script src="js/OrbitControls.js"></script> -->
 <body>
     <header>
         <nav class="navbar bg-info justify-content-center">
@@ -24,7 +26,8 @@
                 <input class="form-control me-2 bg-Primary" type="search" placeholder="Search" aria-label="Search">
             </form>
 
-            <a href="#" class="nav-link text-white"> Добавить модельку </a>
+            <a href="ModelEdit.html" class="nav-link text-white"> Добавить модельку </a>
+            <a href="index.html" class="nav-link text-white"> К списку моделей </a>
             <a href="debug.html"> Отладка </a>
         </nav>
     </header>
@@ -32,20 +35,20 @@
     <main>
         <div class="FlexMain MainDesign">
             <div id="FCLeft" class="FlexCard">
-                <h5>Username/Model name</h5>
+                <h5 id="NAME">Username/Model name</h5>
                 <img id="CURRENTIMAGE" src="img/null.png" alt="Здесь была картинка" />
-                <div></div>
             </div>
             <div id="FCRight" class="FlexCard">
                 <button class="btn btn-primary"> Скачать </button>
-                <p>Просмотры</p>
+                <!-- <p>Просмотры: </p> -->
+                <p id="VIEWINGS"></p>
                 <div>
                     <h5>Теги</h5>
                 </div>
             </div>
         </div>
         <div class="MainDesign">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur accusantium expedita ipsam illum,
+            <p id="DESCRIPTION">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur accusantium expedita ipsam illum,
                 debitis incidunt tempore
                 similique itaque eligendi inventore tenetur soluta porro asperiores doloremque adipisci illo ullam,
                 deleniti molestias.
@@ -53,5 +56,5 @@
         </div>
     </main>
 </body>
-
+<script src="JS/loadMain.js"></script>
 </html>

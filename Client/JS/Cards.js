@@ -1,3 +1,4 @@
+var array;
 document.getElementById('Sample').style.display = 'none';
 let mein = null;
 let cons = fetch('http://localhost:3000/api/models')
@@ -6,12 +7,13 @@ let cons = fetch('http://localhost:3000/api/models')
   .catch(error => console.log('error', error));
 
 cons.then(() => {
-    let array = JSON.parse(mein);
+    array = JSON.parse(mein);
     for(let i = 0; i < array.length; i++)
     {
         let INDIV = document.getElementById("HERE");
         let divm = document.createElement('div');
         divm.className = 'CARD card m-2 justify-content-center';
+        divm.id = `Card_id${array[i]['id']}`;
         divm.style = 'width: 18rem;';
         INDIV.append(divm);
         let txt = document.createElement('p');
@@ -34,11 +36,19 @@ cons.then(() => {
     }
     let Cards = document.getElementsByClassName('CARD');
     for(let i = 0; i < Cards.length; i++)
-        Cards[i].addEventListener('click', ToPage);    
+    {
+        Cards[i].addEventListener('click', () => {
+            let url = new URL('http://localhost:3000/model.html');
+            let cid = Cards[i].id.slice(7);
+            console.log(cid);
+            url.searchParams.set('id', cid);
+            document.location.href = url;
+        });    
+    }
 //    console.log(text);
 });
 
-async function getPict(id)
+/*async function findImage(id, component)
 {
     let meinpict = null;
     let image = fetch('http://localhost:3000/api/picture/:' + id)
@@ -51,10 +61,4 @@ async function getPict(id)
         .then(result => pat = result)         
         path.then(() => { return pat});    
     });
-}
-
-
-function ToPage()
-{
-    document.location.href = 'model.html';
-}
+}*/

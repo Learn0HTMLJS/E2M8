@@ -5,6 +5,8 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 app.use('/img', express.static(`Server/static`));
+app.use('/models', express.static(`Server/static/Models`));
+const pages = app.use('/' ,express.static('Client'));
 
 const models = require('./routers/modelsroute')
 app.use('/api/models', models);
