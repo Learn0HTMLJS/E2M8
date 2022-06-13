@@ -1,22 +1,26 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const bodyParser = require('body-parser');
 
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
+app.use(bodyParser.json());
 app.use('/img', express.static(`Server/static`));
 app.use('/models', express.static(`Server/static/Models`));
 const pages = app.use('/' ,express.static('Client'));
 
-const models = require('./routers/modelsroute')
+const models = require('./routers/modelsroute');
 app.use('/api/models', models);
 
-const pictures = require('./routers/picturesroute')
+const pictures = require('./routers/picturesroute');
 app.use('/api/pictures', pictures);
 
-const tags = require('./routers/tagsroute')
+const tags = require('./routers/tagsroute');
 app.use('/api/tags', tags);
 
+const comments = require('./routers/commentsroute');
+app.use('/api/comments', comments);
 
 /*app.post('/', upload, function (request, response) {
   let filedata = request.file;

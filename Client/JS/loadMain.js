@@ -2,6 +2,7 @@ let mein = null;
 let MyUrl = new URL(window.location);
 //console.log(MyUrl);
 let Model_ID = MyUrl.searchParams.get('id');
+let downloadButton = document.getElementById('DOWNLOAD');
 
 let cons = fetch('http://localhost:3000/api/models/:' + Model_ID)
   .then(response => response.text())
@@ -17,6 +18,11 @@ cons.then(() => {
   component.innerHTML = array['ModelName'];
   component = document.getElementById('VIEWINGS');
   component.innerHTML = `Просмотры: ${array['Viewings']}`;
+  downloadButton.addEventListener('click', () => 
+  {
+    document.location.href = 'http://localhost:3000/models/' + array['Model'];
+  });
+  getComents(Model_ID);
   component = document.getElementById('CURRENTIMAGE');
 
   component.style.display = 'none';
@@ -68,3 +74,24 @@ cons.then(() => {
     render();
 });
 
+async function getComents(model_id)
+{
+  let space = document.getElementById('COMMENTS');
+  fetch('http://localhost:3000/api/comments/:' + model_id)
+  .then(response => response.text())
+  .then(result => {
+    let arr = JSON.parse(result);
+    if (arr.length == 0 || arr == undefined || !arr)
+      return;
+    for(let j = 0; j < arr.length; j++)
+    {
+      let CommentText = document.createElement('p');
+      CommentText.style.margin = '0 auto';
+      CommentText.style.marginTop = '10px';
+      CommentText.style.border = '2px';
+      CommentText.innerHTML = arr[j]['comment'];
+      space.appendChild(CommentText);
+    }
+  })
+  .catch(error => console.log(error));
+}

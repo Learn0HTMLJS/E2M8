@@ -37,8 +37,8 @@ router.route('/')
   })
   .get((req, res) => {
     let r = select.selectModels().then(resul =>{
-      console.log(resul);
-      res.send(JSON.stringify(resul));
+      //console.log(resul);
+      res.send(JSON.stringify(resul[0]));
     });
   });
 
@@ -46,7 +46,7 @@ router.route('/:id')
   .get((req, res) => {
     let num = req.url.slice(2, this.length);   
     let r = select.selectModel(num).then(resul =>{
-      console.log(resul);
+      //console.log(resul);
       if(!resul)
       {
         res.status = 400;

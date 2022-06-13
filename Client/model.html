@@ -15,8 +15,9 @@
     <title>Document</title>
 </head>
 <script src="JS/three.js"></script>
-<script src="JS/STLloader.js"></script> 
+<script src="JS/STLloader.js"></script>
 <!-- <script src="js/OrbitControls.js"></script> -->
+
 <body>
     <header>
         <nav class="navbar bg-info justify-content-center">
@@ -39,7 +40,8 @@
                 <img id="CURRENTIMAGE" src="img/null.png" alt="Здесь была картинка" />
             </div>
             <div id="FCRight" class="FlexCard">
-                <button class="btn btn-primary"> Скачать </button>
+                <button id="DOWNLOAD" class="btn btn-primary"> Скачать </button>
+                <button id="SEND_COMMENT" class="btn btn-primary"> Оставить комментарий </button>
                 <!-- <p>Просмотры: </p> -->
                 <p id="VIEWINGS"></p>
                 <div>
@@ -48,13 +50,36 @@
             </div>
         </div>
         <div class="MainDesign">
-            <p id="DESCRIPTION">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur accusantium expedita ipsam illum,
+            <p id="DESCRIPTION">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur accusantium
+                expedita ipsam illum,
                 debitis incidunt tempore
                 similique itaque eligendi inventore tenetur soluta porro asperiores doloremque adipisci illo ullam,
                 deleniti molestias.
             </p>
         </div>
+        <div id="COMMENTS">
+            <h2>Комментарии</h2>
+        </div>
+        <!-- ДИАЛОГ -->
+        <div id="Background">
+            <div class="container" id="Dialog">
+                <div id="FormDiv"> <button id="CloseButton"> X </button> </div>
+                <div>
+                    <form id="Form" name="form" method="POST">
+                        <!-- Примечание -->
+                        <div class="mb-3">
+                            <label class="form-label">комментарий</label>
+                            <textarea class="form-control" id="Info" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="Send">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </main>
 </body>
 <script src="JS/loadMain.js"></script>
+<script src="JS/SendComment.js"></script>
+
 </html>

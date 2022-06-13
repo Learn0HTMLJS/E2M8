@@ -12,6 +12,7 @@ router.route('/')
   let Name = req.body['Name'];
   let Info = req.body['Info'];
   let Model_ID = req.body['Model_id'];
+console.log(req.body);
   res.status = 200;
   let r, Patch;
   upload.upload(req, res, function (err) {

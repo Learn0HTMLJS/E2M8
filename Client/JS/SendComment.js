@@ -1,15 +1,14 @@
-const Dialog = document.getElementById('PictureDialog');
+const Dialog = document.getElementById('Dialog');
 const Background = document.getElementById('Background');
-const Button = document.getElementById('form1');
+const Button = document.getElementById('SEND_COMMENT');
 const CloseButton = document.getElementById('CloseButton');
-const SendBtn = document.getElementById('SendPict');
-const Image = document.getElementById('Image');
-const ImageInfo = document.getElementById('ImageInfo');
+const SendBtn = document.getElementById('Send');
+const Info = document.getElementById('Info');
 Dialog.addEventListener('click', NoUp);
 Button.addEventListener('click', ShowModal);
 CloseButton.addEventListener('click', CloseModal);
 Background.addEventListener('click', CloseModal);
-SendBtn.addEventListener('click', Sendimg);
+SendBtn.addEventListener('click', Send);
 
 if(Dialog == null || Background == null)
     console.log('vgdfbdf');
@@ -50,20 +49,18 @@ function NoUp(Event)
     Event.stopPropagation();
 }
 
-function Sendimg(Event)
+function Send(Event)
 {
     Event.preventDefault();
-    document.getElementById('CURRENTIMAGE').src = Image;
-    const formData = new FormData();
-    formData.append('Picture', Image.files[0]);
-    formData.append('Info', ImageInfo.value);
-    formData.append('Username', 'Default');
-    console.log(formData);
-    fetch('http://localhost:3000/api/pictures', {
+    const formData2 = new FormData();
+    formData2.append('model_id', Model_ID);
+    formData2.append('comment', Info.value);
+    fetch('http://localhost:3000/api/comments', {
         method: 'POST',
-        body: formData,
+        body: formData2
     })
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
     CloseModal();
+    location.reload();
 }
