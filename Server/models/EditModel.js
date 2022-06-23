@@ -1,14 +1,15 @@
 const supabase = require('../configs/connection'); //already required
 
-async function insertModel(Name, info, username, Path) {
+async function editModel(ID, Name, info, username, Path) {
     try {
         let date = Date.now();
         let {data, error} = await supabase
             .from('Models')
-            .insert([
-                {ModelName: Name, Viewings: 0, Info: info, 
-                    username: username, Model: Path},
-            ]);
+            .update([
+            { ModelName: Name, Viewings: 0, Info: info, 
+                username: username, Model: Path}
+            ])
+            .eq('id', ID);
         //console.log(data);    
         if (error) return error;
         return data;
@@ -18,5 +19,5 @@ async function insertModel(Name, info, username, Path) {
 }
 
 module.exports = {
-    insertModel
+    editModel
 };

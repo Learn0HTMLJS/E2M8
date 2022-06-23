@@ -9,14 +9,14 @@ SendBtn.addEventListener('click', Send);
 function Send(Event)
 {
     Event.preventDefault();
-   const formData = new FormData();
-
+    const formData = new FormData();
     formData.append('Model', Model.files[0]);
     formData.append('Name', ModelName.value);
     formData.append('Info', Info.value);
     formData.append('Username', UserName.value);
-    fetch('http://localhost:3000/api/models', {
-        method: 'POST',
+   
+    fetch('http://localhost:3000/api/models' + Model_ID, {
+        method: 'PUT',
         body: formData
     })
     .then(response => response.text()) 

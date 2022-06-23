@@ -27,9 +27,20 @@
                 <input class="form-control me-2 bg-Primary" type="search" placeholder="Search" aria-label="Search">
             </form>
 
-            <a href="ModelEdit.html" class="nav-link text-white"> Добавить модельку </a>
+            <a href="ModelAdd.html" class="nav-link text-white"> Добавить модельку </a>
             <a href="index.html" class="nav-link text-white"> К списку моделей </a>
-            <a href="debug.html"> Отладка </a>
+
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Управление
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li> <a id="EDIT" class="dropdown-item" onclick="openEditor()"> Редактировать </a> </li>
+                    <li> <a id="DELETE" class="btn dropdown-item btn-primary" onclick="deleteElement(Event)"> Удалить </a> </li>
+                </ul>
+            </div>
+
         </nav>
     </header>
 
@@ -44,9 +55,6 @@
                 <button id="SEND_COMMENT" class="btn btn-primary"> Оставить комментарий </button>
                 <!-- <p>Просмотры: </p> -->
                 <p id="VIEWINGS"></p>
-                <div>
-                    <h5>Теги</h5>
-                </div>
             </div>
         </div>
         <div class="MainDesign">
@@ -76,6 +84,8 @@
                 </div>
             </div>
         </div>
+
+
 
     </main>
 </body>

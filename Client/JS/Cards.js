@@ -15,15 +15,16 @@ cons.then(() => {
         divm.className = 'CARD card m-2 justify-content-center';
         divm.id = `Card_id${array[i]['id']}`;
         divm.style = 'width: 18rem;';
-        INDIV.append(divm);
+        INDIV.appendChild(divm);
         let txt = document.createElement('p');
         txt.innerHTML = array[i]['ModelName'];
-        divm.append(txt);
+        divm.appendChild(txt);
         let pd = document.createElement('div');
         pd.className = 'img-fluid text-center';
-        divm.append(pd);
+        divm.appendChild(pd);
 
         let pict = document.createElement('img');
+        pict.style.width = '100%';
         pd.append(pict);
 //        let ii = getPict(array[i]['id']);
 //        if(ii)
@@ -32,7 +33,7 @@ cons.then(() => {
             pict.src = '../img/null.png'; 
         let views = document.createElement('p');
         views.innerHTML = array[i]['Viewings'];
-        divm.append(views);
+        divm.appendChild(views);
     }
     let Cards = document.getElementsByClassName('CARD');
     for(let i = 0; i < Cards.length; i++)
