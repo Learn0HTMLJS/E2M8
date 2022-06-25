@@ -26,14 +26,10 @@ cons.then(() => {
         let pict = document.createElement('img');
         pict.style.width = '100%';
         pd.append(pict);
-//        let ii = getPict(array[i]['id']);
-//        if(ii)
-//            pict.src = ii;
-//        else
-            pict.src = '../img/null.png'; 
-        let views = document.createElement('p');
-        views.innerHTML = array[i]['Viewings'];
-        divm.appendChild(views);
+        findImage(array[i]['id'], pict);
+//        let views = document.createElement('p');
+//        views.innerHTML = array[i]['Viewings'];
+//        divm.appendChild(views);
     }
     let Cards = document.getElementsByClassName('CARD');
     for(let i = 0; i < Cards.length; i++)
@@ -49,17 +45,20 @@ cons.then(() => {
 //    console.log(text);
 });
 
-/*async function findImage(id, component)
+async function findImage(id, component)
 {
     let meinpict = null;
-    let image = fetch('http://localhost:3000/api/picture/:' + id)
+    let image = fetch('http://localhost:3000/api/pictures/:' + id)
     .then(response => response.text())
     .then(result => meinpict = result)
-    let pat = null
+    .catch(error => console.log('error', error));   
+    let pat = null;
     image.then(()=>{
-        let path = fetch('http://localhost:3000/img/' + JSON.parse(meinpict)[0]['Patch'])
-        .then(response => response.text())
-        .then(result => pat = result)         
-        path.then(() => { return pat});    
+        if(!meinpict)
+        {
+            component.src = '../img/null.png';
+            return;
+        }
+        component.src = 'http://localhost:3000/img/' + JSON.parse(meinpict)['Image'];
     });
-}*/
+}

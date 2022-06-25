@@ -19,7 +19,8 @@ cons.then(() => {
   component = document.getElementById('NAME');
   component.innerHTML = array['ModelName'];
   component = document.getElementById('VIEWINGS');
-  component.innerHTML = `Просмотры: ${array['Viewings']}`;
+  component.style.display = 'none';
+//  component.innerHTML = `Просмотры: ${array['Viewings']}`;
   component.style.marginTop = '20px';
   component.style.marginBottom = '20px';
   component.style.fontSize = '20px';
@@ -83,6 +84,8 @@ cons.then(() => {
 async function getComents(model_id)
 {
   let space = document.getElementById('COMMENTS');
+  space.style.paddingLeft = '5%';
+  space.style.width = '90%';
   fetch('http://localhost:3000/api/comments/:' + model_id)
   .then(response => response.text())
   .then(result => {

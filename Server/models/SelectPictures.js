@@ -5,7 +5,7 @@ async function selectPicture(Picture_ID) {
         let { data, error } = await supabase
             .from('Pictures')
             .select('Image')
-            .eq('id', Picture_ID)            
+            .eq('Model_ID', Picture_ID)            
         if (error) throw error
         return data
     } catch (e) {

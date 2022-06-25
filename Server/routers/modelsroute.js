@@ -6,6 +6,8 @@ const model = require('../models/InsertModel');
 const select = require('../models/SelectModel');
 const update = require('../models/EditModel');
 const del = require('../models/DeleteModel');
+const del1 = require('../models/DeleteComment');
+const del2 = require('../models/DeletePicture');
 const jsonParser = express.json();
 
 router.route('/')
@@ -86,7 +88,9 @@ console.log(temp);
     });  
   })
   .delete((req, res) => {
-    let num = req.url.slice(2, this.length);      
+    let num = req.url.slice(2, this.length);    
+    del1.deleteComment(num);
+    del2.DeletePicture(num);
     let r = del.deleteModel(num).then(resul =>{
       res.send(JSON.stringify(resul));
     });

@@ -59,8 +59,10 @@ function Send(Event)
         method: 'POST',
         body: formData2
     })
-    .then((res) => console.log(res))
+    .then((res) => { 
+        console.log(res);
+        location.reload();        
+    })
     .catch((err) => console.log(err));
     CloseModal();
-    location.reload();
 }

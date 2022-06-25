@@ -6,16 +6,34 @@ const Info = document.getElementById('Info');
 const Image = document.getElementById('Image');
 SendBtn.addEventListener('click', Send);
 
+function Check()
+{
+    if(!ModelName.value)
+    {
+        ModelName.focus;
+        return;
+    }
+    if(!Info.value)
+    {
+        Info.focus;
+        return;
+    }
+    if(!UserName.value)
+    {
+        UserName.focus;
+        return;
+    }   
+}
+
 function Send(Event)
 {
     Event.preventDefault();
+    Check();
     const formData = new FormData();
     formData.append('Model', Model.files[0]);
     formData.append('Name', ModelName.value);
     formData.append('Info', Info.value);
-    formData.append('Username', UserName.value);
-   
-    SendImage(Model_ID);
+    formData.append('Username', UserName.value);  
     fetch('http://localhost:3000/api/models/:' + Model_ID, {
         method: 'PUT',
         body: formData
@@ -26,7 +44,8 @@ function Send(Event)
         let datum = JSON.parse(result);
         //console.log(result);
         //document.model_id = res[0]['id'];
-        SendImage(datum['id']);     
+        if(Image.files[0])
+            SendImage(datum['id']);     
     })
     .catch((err) => console.log(err));
 }

@@ -6,11 +6,35 @@ const Info = document.getElementById('Info');
 const Image = document.getElementById('Image');
 SendBtn.addEventListener('click', Send);
 
+function Check()
+{
+    if(!ModelName.value)
+    {
+        ModelName.focus;
+        return;
+    }
+    if(!Info.value)
+    {
+        Info.focus;
+        return;
+    }
+    if(!UserName.value)
+    {
+        UserName.focus;
+        return;
+    }   
+    if(!Model.files[0])
+    {
+        Model.focus;
+        return;
+    }   
+}
+
 function Send(Event)
 {
     Event.preventDefault();
-   const formData = new FormData();
-
+    Check();
+    const formData = new FormData();
     formData.append('Model', Model.files[0]);
     formData.append('Name', ModelName.value);
     formData.append('Info', Info.value);
@@ -33,6 +57,8 @@ function Send(Event)
 
 async function SendImage(model_id)
 {
+    if(!Image.files[0])
+        return;
     const formData = new FormData();
     formData.append('Model_ID', model_id);
     formData.append('Picture', Image.files[0]);
