@@ -5,13 +5,13 @@ const model = require('../models/InsertPicture');
 const select = require('../models/SelectPictures');
 const jsonParser = express.json();
 
-
-router.route('/')
+router.route(`/:id`)
 .post(upload.upload, jsonParser, (req, res) => {
+  let num = req.url.slice(2, this.length);
   let userName = req.body['Username'];
-  let Name = req.body['Name'];
+  let Picture = req.body['Picture'];
   let Info = req.body['Info'];
-  let Model_ID = req.body['Model_id'];
+//  let Model_ID = req.body['Model_id'];
 console.log(req.body);
   res.status = 200;
   let r, Patch;
@@ -22,14 +22,16 @@ console.log(req.body);
       r = {
         "status": "Нет файла"
       }
+      res.send(JSON.stringify(r));
+      return;
     }
   });
-  Patch = req.file.path;
-  model.insertPicture(Name, Info, userName, Patch, Model_ID);
-  res.send(JSON.stringify(r));
-});
-
-router.route(`/:id`)
+  Patch = req.file.filename;
+  model.insertPicture(Info, userName, Patch, num).then(result => {
+    r = result;
+  });
+//  res.send(JSON.stringify(r));
+})
   .get((req, res) => {
     let num = req.url.slice(2, this.length);
     let r = select.selectPicture(num).then(resul =>{

@@ -15,7 +15,8 @@ function Send(Event)
     formData.append('Info', Info.value);
     formData.append('Username', UserName.value);
    
-    fetch('http://localhost:3000/api/models' + Model_ID, {
+    SendImage(Model_ID);
+    fetch('http://localhost:3000/api/models/:' + Model_ID, {
         method: 'PUT',
         body: formData
     })
@@ -25,23 +26,25 @@ function Send(Event)
         let datum = JSON.parse(result);
         //console.log(result);
         //document.model_id = res[0]['id'];
-        SendImage(datum['id']);
+        SendImage(datum['id']);     
     })
     .catch((err) => console.log(err));
-    //document.location.href = 'index.html';
 }
 
 async function SendImage(model_id)
 {
     const formData = new FormData();
     formData.append('Model_ID', model_id);
-    formData.append('Name', Image.files[0]);
+    formData.append('Picture', Image.files[0]);
     formData.append('Info', 'empty');
     formData.append('Username', UserName.value);
-    fetch('http://localhost:3000/api/pictures', {
+    fetch('http://localhost:3000/api/pictures/:' + model_id, {
         method: 'POST',
         body: formData
     })
-    .then(res => console.log(res))
+    .then(res => {
+        console.log(res);
+        document.location.href = 'index.html';
+    })
     .catch(err => console.log(err));
 }

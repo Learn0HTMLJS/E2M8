@@ -17,7 +17,8 @@ const fileFilter = (req, file, cb) => {
     cb(null, false);
   }
 }
-  
+
+ 
 //app.use('/styles', express.static(`static`));
 const uploadModel = multer({storage: storage}).single('Model');
    

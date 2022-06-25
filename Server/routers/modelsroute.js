@@ -59,25 +59,28 @@ router.route('/:id')
       res.send(resul[0]);
     });
   })
-  .put((req, res) => {
+  .put(upload.uploadModel, jsonParser, (req, res) => {
+    let num = req.url.slice(2, this.length);  
     let userName = req.body['Username'];
     let Name = req.body['Name'];
     let Info = req.body['Info'];
     res.status = 200;
     let r, Patch;
-    upload.uploadModel(req, res, function (err) {
-      if(!req.file)
-      {
-        res.status = 400;
-        r = {
-          "status": "Нет файла"
-        }
-        res.send(JSON.stringify(r));
-        return;
-      }
+    if(req.file)
+    {
+      upload.uploadModel(req, res, function (err) {
+        console.log(err);
+      });
+      Patch = req.file.filename;
+    }
+    else 
+    {
+      select.selectModel(num).then( result => {
+      let temp = result['Model'];
+console.log(temp);
+      Patch = temp;
     });
-    Patch = req.file.filename;
-    let num = req.url.slice(2, this.length);   
+    }
     r = update.editModel(num, Name, Info, userName, Patch).then(result =>{   
       res.send(JSON.stringify(result[0]));
     });  
